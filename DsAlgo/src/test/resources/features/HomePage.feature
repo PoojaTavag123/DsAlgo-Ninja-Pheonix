@@ -17,7 +17,7 @@
 ## (Comments)
 #Sample Feature Definition Template
 @dsalgo-home
-Feature: Validate Home Page
+Feature: Validate Home Page check
   
 
   @home-page_dropdown
