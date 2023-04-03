@@ -16,21 +16,22 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@dsalgo-home
+@dsalgo-home-page
 Feature: Validate Home Page check
   
+  Background: Validate home page
+  	Given user is in home page
 
   @home-page_dropdown
   Scenario: Check whether the Data Structures drop down works or not
-    Given user is in home page of DS algo portal with url "https://dsportalapp.herokuapp.com"
-    When user clicks Data Structures drop down
-    Then user should see "6" differentdata structures entries in that drop down
+    When user clicks Data Structures dropdown
+    Then user should see "6" different entries
    
 
   @home-page-get-started
-  Scenario Outline: Validate whether alert message is displayed if user clicks any of the getStarted button without logging in
+  Scenario Outline: Validate alert message when user clicks any of the getStarted button without logging in
     When user clicks <GetStartedBtn> getstarted button without logging in
-    Then alert message "You are not logged in" should appear after clicking get started button
+    Then alert message "You are not logged in" should appear
     
     Examples: 
       | GetStartedBtn   |

@@ -19,15 +19,16 @@
 @dsalgo-register-page
 Feature: Validate DsAlgo register page
 
+	Background: Validate register page
+		Given user is in register page
+
 	@register-login-link    
   Scenario: Validate login link
-  	Given user is in register page "https://dsportalapp.herokuapp.com/"
     When user clicks login link
     Then user is redirected to SignIn page having button with text "Login"
 
-  @register-incomplete-input
+  @register-incomplete-input-fail
   Scenario Outline: Validate register with incomplete input
-  	Given user is in register page
     When user enters <UserName>, <Password> and <ConfirmPassword> clicks register button
     Then register validation error <ValidationMsg> appears at location <Location>
     
@@ -41,13 +42,11 @@ Feature: Validate DsAlgo register page
 			| username1	| Password1	|           			| Please fill out this field. | Password2 |
 			
 
-  @register-complete-input
+  @register-complete-input-pass
   Scenario Outline: Validate register with complete input
     When user enters <UserName>, <Password> and <ConfirmPassword> clicks register button
-    Then user gets register <AlertMessage> based on the <Result>
+    Then user gets register <AlertMessage>
     
     Examples: 
-      | UserName  				| Password 		| ConfirmPassword | AlertMessage 														| Result 	|
-      | fdgdf 						| fdfg 				| fdfg						| Invalid Username and Password 					| Fail		|
-      | Pooja@NumpyNinja 	| RT56YU@78 	| RT56YU@72				| The two password fields didn’t match.		| Fail		|
-      | Pooja@NumpyNinja  | RT56YU@78 	| RT56YU@78				| Invalid Username and Password						| Fail		|
+      | UserName  				| Password 		| ConfirmPassword | AlertMessage 														| 
+      | Pooja@NumpyNinja  | RT56YU@78 	| RT56YU@78				| Invalid Username and Password						| 

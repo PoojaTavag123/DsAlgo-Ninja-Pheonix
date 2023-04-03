@@ -15,15 +15,16 @@ public WebDriver driver;
 	By dsdropdownItemsByObj = (By.className("dropdown-item"));
 	
 	By signInLinkByObj = By.xpath(("//a[@href='/login']"));
+	By signOutLinkByObj = By.xpath(("//a[@href='/logout']"));
 	By registerLinkByObj = By.xpath(("//a[@href='/register']"));
 	
 	By dsGetStartedByObj = By.xpath("//*[@href='data-structures-introduction']");
-	By arrayGetStartedByObj = By.xpath("//html/body/div[2]");
+	By arrayGetStartedByObj = By.xpath("//*[@href='array']");
 	By lsGetStartedByObj = By.xpath("//*[@href='linked-list']");
 	By stackGetStartedByObj = By.xpath("//*[@href='stack']");
-	By queGetStartedByObj = By.xpath("//html/body/div[2]");
+	By queGetStartedByObj = By.xpath("//*[@href='queue']");
 	By treeGetStartedByObj = By.xpath("//*[@href='tree']");
-	By graphGetStartedByObj = By.xpath("//html/body/div[3]/div[7]/div/div");
+	By graphGetStartedByObj = By.xpath("//*[@href='graph']");
 
 	By alertMsgByObj = By.xpath("//div[@class='alert alert-primary']");
 
@@ -38,6 +39,10 @@ public WebDriver driver;
 
 	public void clickSignInLink() {
 		driver.findElement(signInLinkByObj).click();
+	}
+	
+	public void clickSignOutLink() {
+		driver.findElement(signOutLinkByObj).click();
 	}
 	
 	public void clickRegisterLink() {
@@ -63,11 +68,7 @@ public WebDriver driver;
 		driver.findElement(arrayGetStartedByObj).click();
 		
 	}
-	public String getAlertMsg() {
-		return driver.findElement(alertMsgByObj).getText();
-		
-	}
-
+	
 	public void clickLsGetStarted() {
 		driver.findElement(lsGetStartedByObj).click();
 		
@@ -90,6 +91,11 @@ public WebDriver driver;
 
 	public void clickGraphGetStarted() {
 		driver.findElement(graphGetStartedByObj).click();
+		
+	}
+	
+	public String getAlertMsg() {
+		return driver.findElement(alertMsgByObj).getText();
 		
 	}
 

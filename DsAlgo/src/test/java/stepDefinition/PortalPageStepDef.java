@@ -32,9 +32,9 @@ public class PortalPageStepDef extends BaseClass {
 		pp = new PortalPage(driver);
 	}
 	
-	@When("user enters DsAlgo portal {string}") 
-	public void user_enters_portal_url(String url) {
-		driver.get(url);
+	@When("user enters DsAlgo portal URL") 
+	public void user_enters_portal_url() {
+		driver.get(cr.getConfigPropertyValue("URL"));
 	}
 	
 	@Then("DsAlgo portal page with title {string} opens") 

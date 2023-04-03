@@ -19,15 +19,16 @@
 @dsalgo-signin-page
 Feature: Validate DsAlgo SignIn page
 
+	Background: Validate sign in page
+		Given user is in sign in page
+
 	@signin-register-link    
-  Scenario: Validate register link
-  	Given user is in home page "https://dsportalapp.herokuapp.com/"
+  Scenario: Validate register link on sign in page
     When user clicks register link
     Then user is redirected to register page having button with text "Register"
 
   @signin-incomplete-input
   Scenario Outline: Validate SignIn with incomplete input
-  	Given user is in sign in page
     When user enters <UserName> and <Password> and clicks login button
     Then sign in validation error <ValidationMsg> appears at location <Location>
     
@@ -38,14 +39,21 @@ Feature: Validate DsAlgo SignIn page
 			|     			| Password1 | Please fill out this field. | Username |
 			
 
-  @signin-complete-input
+  @signin-complete-input-fail
   Scenario Outline: Validate SignIn with complete input
     When user enters <UserName> and <Password> and clicks login button
-    Then user gets sign in <AlertMessage> based on the <Result>
+    Then user gets sign in <AlertMessage>
 
     Examples: 
-      | UserName  				| Password 		| AlertMessage 									| Result 	|
-      | fdgdf 						|    fdfg 		| Invalid Username and Password | Fail		|
-      | Pooja@NumpyNinja 	| RT56YU@78 	| You are logged in							| Pass		|
+      | UserName  				| Password 		| AlertMessage 									| 
+      | fdgdf 						|    fdfg 		| Invalid Username and Password | 
   
+  
+ @signin-complete-input-pass
+  Scenario: Validate SignIn with complete input
+		When user enters valid username and password
+		Then user is signed in and redirected to home page with alert message "You are logged in"
+		When user clicks signout link
+		Then user is signed out and redirected to home page with alert message "Logged out successfully"
+
   
