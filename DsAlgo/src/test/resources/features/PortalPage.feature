@@ -22,7 +22,7 @@ Feature: Validate DsAlgo URL & portal
   @test-url
   Scenario: Validate DsAlgo portal URL
     Given user is in internet browser
-    When user enters DsAlgo portal "https://dsportalapp.herokuapp.com/"
+    When user enters DsAlgo portal URL
     Then DsAlgo portal page with title "Preparing for the Interviews" opens 
 
   @test-get-started-btn

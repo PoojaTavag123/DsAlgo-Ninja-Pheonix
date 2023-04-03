@@ -12,29 +12,31 @@ import pageObject.SignInPage;
 
 public class HomePageStepDef extends BaseClass {
 	
-	@Given("user is in home page of DS algo portal with url {string}")
-	 public void user_in_home_page (String url) {
+	@Given("user is in home page")
+	 public void user_in_home_page () {
 		pp = new PortalPage(driver);
 		hp = new HomePage(driver);
-		driver.get(url);
+		sp = new SignInPage(driver);
+		rp = new RegisterPage(driver);
+		
+		driver.get(cr.getConfigPropertyValue("URL"));
 		driver.manage().window().maximize();
 		pp.clickGetStartedBtn();
 	}
-	@When("user clicks Data Structures drop down")
-	  public void user_clicks_Data_Structures_drop_down() throws InterruptedException {
+	@When("user clicks Data Structures dropdown")
+	  public void user_clicks_ds_dropdown() throws InterruptedException {
 		Thread.sleep(1000);
 		hp.clickDsDropDown();
 		Thread.sleep(1000);	
 	}
-	@Then("user should see {string} differentdata structures entries in that drop down")
-	  public void drop_down_menu_has_six_different_data_structures(String expListSize) {
+	@Then("user should see {string} different entries")
+	  public void dropdown_entries_size_check(String expListSize) {
 		int actDropDownListSize = hp.getDropDownSize();
 		Assert.assertTrue(actDropDownListSize == Integer.valueOf(expListSize));
-			
 	}
 	
 	@When("^user clicks (.*) getstarted button without logging in$")
-	public void user_clicks_any_of_the_Get_Started_Btn(String getStartedBtnSelText) throws InterruptedException {
+	public void user_clicks_any_get_started_btn(String getStartedBtnSelText) throws InterruptedException {
 		System.out.println("############# getStartedBtnSelText: "+getStartedBtnSelText);
 		
 		if (getStartedBtnSelText.equals("DataStructure")) {
@@ -63,12 +65,11 @@ public class HomePageStepDef extends BaseClass {
 		}
 		Thread.sleep(500);
 	}
-	@Then("alert message {string} should appear after clicking get started button")
+	@Then("alert message {string} should appear")
 	public void home_page_alert_msg( String expAlertMsg) {
 		String actAlertMsg = hp.getAlertMsg();
 		System.out.println("############# Alert Message: "+actAlertMsg);
-		Assert.assertTrue(expAlertMsg.equals(actAlertMsg));
-		 		
+		Assert.assertTrue(expAlertMsg.equals(actAlertMsg));		
 	}
 	 
 	@When("user clicks SignIn link from home page")
@@ -77,7 +78,6 @@ public class HomePageStepDef extends BaseClass {
 	} 
 	@Then("user should be redirected to SignIn page having {string} button")
 	public void user_lands_in_sign_in_page(String expLoginBtnText) {
-		sp = new SignInPage(driver);
 		String actLoginBtnText = sp.getLoginBtnText();
 		System.out.println("########Alert Message: "+actLoginBtnText);
 		Assert.assertTrue(actLoginBtnText.equals(expLoginBtnText)); 
@@ -90,7 +90,6 @@ public class HomePageStepDef extends BaseClass {
 	 
 	@Then("user should be redirected to Register page having {string} button")
 	public void user_lands_in_register_page(String expRegisterBtnText) {
-		rp = new RegisterPage(driver);
 		String actRegisterBtnText = rp.getRegisterBtnText();
 		System.out.println("########Alert Message: "+actRegisterBtnText);
 		Assert.assertTrue(actRegisterBtnText.equals(expRegisterBtnText));
