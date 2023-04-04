@@ -16,7 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@dsalgo-linkedlist
+@dsalgo-ls-page
 Feature: Validate Linkedlist Page
 
 	Background: User is in home page and signed in

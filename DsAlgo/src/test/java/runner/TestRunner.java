@@ -1,20 +1,15 @@
-
-
 package runner;
 
-import org.junit.runner.RunWith;
 import org.testng.annotations.DataProvider;
-import org.testng.collections.Objects;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-@RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin= {"pretty", "html:target/pooja.html"}, //reporting
+		plugin= {"pretty", "html:target/cucumber-report.html"}, //reporting
 		monochrome=false, //console-output
-		tags= "@dsalgo-portal-page or @dsalgo-signin-page or @dsalgo-register-page or @dsalgo-home-page or @dsalgo-array-page",
+		//tags= "@dsalgo-portal-page or @dsalgo-signin-page or @dsalgo-register-page or @dsalgo-home-page or @dsalgo-array-page or @dsalgo-ds-page or @dsalgo-ls-page or @dsalgo-queue-page",
+		tags= "@dsalgo-portal-page",
 		features="src/test/resources/features/",		
 		glue={"stepDefinition"}
 )
