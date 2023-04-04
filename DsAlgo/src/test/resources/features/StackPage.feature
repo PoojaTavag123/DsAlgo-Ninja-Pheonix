@@ -16,7 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@dsalgo-stack
+@dsalgo-stack-page
 Feature: Validate stack Page
 
 	Background: User is in home page and signed in
